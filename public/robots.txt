@@ -1,0 +1,25 @@
+# robots.txt — رواء | REWAA
+# مسارات الحساب والدفع والسلة والبحث مستثناة من الفهرسة.
+User-agent: *
+Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order
+Disallow: /account
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /wishlist
+Disallow: /compare
+Disallow: /search
+Disallow: /services/book
+Disallow: /help/track
+Disallow: /help/returns
+Disallow: /help/warranty-claim
+Disallow: /404
+
+# استعلامات الفلترة والترتيب لا تُفهرس منفصلة
+Disallow: /*?
+
+Sitemap: https://rewaa.sa/sitemap.xml

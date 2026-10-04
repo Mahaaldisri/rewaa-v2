@@ -1,0 +1,427 @@
+@import "tailwindcss";
+
+/* =============================================================
+   Design Tokens — رواء (REWAA) Storefront
+   Every token is exposed both as a Tailwind utility namespace
+   (--color-*, --radius-*, --shadow-*, --font-*) and as a plain
+   CSS custom property on :root for hand-written CSS.
+   ============================================================= */
+@theme {
+  /* Typography */
+  --font-display: "Alexandria", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Ink — cool navy-tinted neutrals (matches the Rewaa mark) */
+  --color-ink-50: #f4f7fb;
+  --color-ink-100: #e5ebf4;
+  --color-ink-200: #c9d6e6;
+  --color-ink-300: #a1b5ce;
+  --color-ink-400: #6a809f;
+  --color-ink-500: #51657f;
+  --color-ink-600: #3c4e67;
+  --color-ink-700: #2a3a51;
+  --color-ink-800: #1a2840;
+  --color-ink-900: #111e33;
+  --color-ink-950: #091426;
+
+  /* Brand — Rewaa navy (#16306B), the primary identity colour */
+  --color-brand-50: #eef3fc;
+  --color-brand-100: #dbe5f8;
+  --color-brand-200: #b6c9ef;
+  --color-brand-300: #85a3e0;
+  --color-brand-400: #4e76c8;
+  --color-brand-500: #2b53a7;
+  --color-brand-600: #1d3f87;
+  --color-brand-700: #16306b;
+  --color-brand-800: #112555;
+  --color-brand-900: #0d1c41;
+
+  /* Aqua — Rewaa cyan (#22A9E0), the highlight accent */
+  --color-aqua-50: #ebf8fe;
+  --color-aqua-100: #d2f0fd;
+  --color-aqua-200: #a6e1fa;
+  --color-aqua-300: #6fcdf4;
+  --color-aqua-400: #38b5ea;
+  --color-aqua-500: #22a9e0;
+  --color-aqua-600: #0f87bd;
+  --color-aqua-700: #0d6c98;
+  --color-aqua-800: #11587b;
+  --color-aqua-900: #124865;
+
+  /* Flow — Rewaa teal-green (#22B573), used for purity / eco cues */
+  --color-flow-50: #eafaf2;
+  --color-flow-100: #cff3e2;
+  --color-flow-200: #a1e7c6;
+  --color-flow-300: #63d4a2;
+  --color-flow-400: #2fbe80;
+  --color-flow-500: #16a46a;
+  --color-flow-600: #0f8757;
+  --color-flow-700: #0e6b47;
+  --color-flow-800: #0d553a;
+  --color-flow-900: #0b4531;
+
+  /* Paper / surfaces */
+  --color-paper: #f8fafd;
+  --color-paper-deep: #eef3f9;
+  --color-surface: #ffffff;
+
+  /* Semantic */
+  --color-success: #0f8757;
+  --color-success-soft: #e6f6ee;
+  --color-warning: #9a6508;
+  --color-warning-soft: #fdf2de;
+  --color-danger: #c2261c;
+  --color-danger-soft: #fceae8;
+  --color-info: #0d6c98;
+  --color-info-soft: #e7f4fb;
+
+  /* Radius scale */
+  --radius-xs: 4px;
+  --radius-sm: 7px;
+  --radius-md: 11px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 30px;
+
+  /* Shadow hierarchy */
+  --shadow-hair: 0 1px 2px rgb(9 20 38 / 0.05);
+  --shadow-card: 0 1px 2px rgb(9 20 38 / 0.04), 0 8px 24px -12px rgb(9 20 38 / 0.12);
+  --shadow-lift: 0 2px 6px rgb(9 20 38 / 0.06), 0 18px 40px -18px rgb(9 20 38 / 0.28);
+  --shadow-pop: 0 24px 70px -24px rgb(9 20 38 / 0.45);
+  --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.6);
+  --shadow-brand: 0 10px 30px -12px rgb(22 48 107 / 0.65);
+
+  /* Motion */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-rise: rise 0.5s var(--ease-out-soft) both;
+  --animate-fade: fade 0.25s ease-out both;
+  --animate-pop: pop 0.32s var(--ease-spring) both;
+  --animate-slide-up: slide-up 0.36s var(--ease-out-soft) both;
+  --animate-toast-in: toast-in 0.4s var(--ease-spring) both;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+  --animate-spin-slow: spin 1s linear infinite;
+  --animate-drop: drop 3.4s ease-in-out infinite;
+}
+
+@keyframes drop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(3px) scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 180% 0;
+  }
+  100% {
+    background-position: -80% 0;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* RTL: the track travels to the right so the duplicate copy fills the gap. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(34 169 224 / 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgb(34 169 224 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(34 169 224 / 0);
+  }
+}
+@keyframes cart-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.28) rotate(-6deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ============================ Base ============================ */
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-h: 68px;
+    --container: 1320px;
+    --gutter: clamp(1rem, 3.2vw, 2.25rem);
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 400;
+    background-color: var(--color-paper);
+    color: var(--color-ink-900);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body[data-scroll-locked="true"] {
+    overflow: hidden;
+    /* keep layout stable on desktop when the lightbox opens */
+    scrollbar-gutter: stable;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--color-ink-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: var(--color-aqua-200);
+    color: var(--color-ink-950);
+  }
+}
+
+/* ========================= Utilities ========================= */
+@layer utilities {
+  .container-x {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Ambient layered background: cool water light — cyan, teal and navy glows */
+  .bg-ambient {
+    background-image:
+      radial-gradient(900px 520px at 88% -8%, rgb(34 169 224 / 0.17), transparent 62%),
+      radial-gradient(760px 480px at 4% 2%, rgb(34 181 115 / 0.13), transparent 60%),
+      radial-gradient(1100px 700px at 50% 108%, rgb(22 48 107 / 0.09), transparent 65%),
+      linear-gradient(180deg, #fcfdff 0%, var(--color-paper) 42%, var(--color-paper-deep) 100%);
+  }
+
+  .bg-grid-fine {
+    background-image:
+      linear-gradient(to left, rgb(9 20 38 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(9 20 38 / 0.045) 1px, transparent 1px);
+    background-size: 68px 68px;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .thin-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink-200) transparent;
+  }
+  .thin-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-ink-200);
+    border-radius: 999px;
+  }
+
+  .skeleton {
+    background-color: var(--color-ink-100);
+    background-image: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgb(255 255 255 / 0.85) 42%,
+      transparent 64%
+    );
+    background-size: 220% 100%;
+    background-repeat: no-repeat;
+    animation: var(--animate-shimmer);
+  }
+
+  .cart-bump {
+    animation: cart-bump 0.45s var(--ease-spring);
+  }
+
+  /* The three identity colours in one line: cyan → teal → navy */
+  .aqua-rule {
+    background: linear-gradient(
+      to left,
+      transparent,
+      var(--color-aqua-400) 14%,
+      var(--color-flow-500) 46%,
+      var(--color-brand-600) 78%,
+      transparent
+    );
+  }
+
+  .zoom-cursor {
+    cursor: zoom-in;
+  }
+  .grab-cursor {
+    cursor: grab;
+  }
+  .grabbing-cursor {
+    cursor: grabbing;
+  }
+
+  /* Scroll-reveal helper driven by IntersectionObserver */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.65s var(--ease-out-soft),
+      transform 0.65s var(--ease-out-soft);
+    will-change: opacity, transform;
+  }
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Keeps the announcement marquee correct when the store switches to LTR */
+  [dir="ltr"] .marquee-track {
+    animation-name: marquee-ltr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
